@@ -7,6 +7,10 @@
   height: 40vmin;
 }
 
+.clearBG {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
