@@ -8,6 +8,7 @@ import DisplayProtein from "./DisplayProtein";
 import DisplayCombo from "./DisplayCombo";
 import Contact from "./Contact";
 import Checkout from "./Checkout";
+import Credit from "./Credit";
 import About from "./About";
 import Main from "./Main";
 import Menu from "./Menu";
@@ -16,6 +17,7 @@ import history from "../history";
 
 class App extends Component {
   state = {
+    notice: { text: null, background: null },
     yourOrder: [],
     items: [
       // COMBOS [0]
@@ -133,15 +135,6 @@ class App extends Component {
           price: 4.99,
           unit: "/lb",
           value: 0
-        },
-        {
-          id: 25,
-          name: "Mapo Tofu",
-          image:
-            "https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80",
-          price: 4.99,
-          unit: "/lb",
-          value: 0
         }
       ],
       // APPETIZERS [3]
@@ -177,6 +170,10 @@ class App extends Component {
     ]
   };
 
+  handleActionNotice = (text, bg) => {
+    this.setState({ notice: { text, background: bg } });
+  };
+
   handleAddItem = item => {
     const items = [...this.state.items];
     for (let cur of items) {
@@ -184,6 +181,7 @@ class App extends Component {
         if (cur[i].name === item.name) cur[i].value++;
         this.setState({ items });
         this.handleTotalCartItems();
+        this.handleActionNotice("added!", "btn btn-success");
       }
     }
   };
@@ -195,11 +193,24 @@ class App extends Component {
         if (cur[i].name === item.name && cur[i].value > 0) cur[i].value--;
         this.setState({ items });
         this.handleTotalCartItems();
+        this.handleActionNotice("removed!", "btn btn-danger");
       }
     }
   };
 
-  // Minor issue: All +/- buttons fire when one is clicked
+  handleRemoveAllItem = item => {
+    const items = [...this.state.items];
+    for (let cur of items) {
+      for (let i = 0; i < cur.length; i++) {
+        if (cur[i].name === item.name && cur[i].value > 0)
+          cur[i].value = cur[i].value * 0;
+
+        this.setState({ items });
+        this.handleTotalCartItems();
+      }
+    }
+  };
+
   handleTotalCartItems = () => {
     const newState = [...this.state.items];
     let newOrder = [];
@@ -209,7 +220,6 @@ class App extends Component {
       }
     }
     this.setState({ yourOrder: newOrder });
-    console.log(this.state.yourOrder.length);
   };
 
   render() {
@@ -225,10 +235,58 @@ class App extends Component {
               onAdd={this.handleAddItem}
               onSubtract={this.handleSubtractItem}
             />
+            <div>
+              <div
+                className="modal fade"
+                id="displayActionNotice"
+                tabIndex="-1"
+                role="dialog"
+                aria-labelledby="showActionModal"
+                aria-hidden="true"
+              >
+                <div
+                  className="modal-dialog modal-dialog-centered"
+                  role="document"
+                >
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="showActionModal">
+                        Item {this.state.notice.text}
+                      </h5>
+                      <button
+                        type="button"
+                        className="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div className="modal-body">
+                      Your item has been successfully {this.state.notice.text}
+                    </div>
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className={this.state.notice.background}
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <Switch>
               <Route path="/" exact component={Main} />
               <Route path="/about" exact component={About} />
               <Route path="/menu" exact component={Menu} />
+              <Route
+                path="/credit"
+                exact
+                render={() => <Credit {...this.state} />}
+              />
               <Route
                 path="/proteins"
                 exact
@@ -251,6 +309,7 @@ class App extends Component {
                   />
                 )}
               />
+
               <Route
                 path="/veggies"
                 exact
@@ -283,6 +342,7 @@ class App extends Component {
                     {...this.state}
                     onAdd={this.handleAddItem}
                     onSubtract={this.handleSubtractItem}
+                    removeAllItems={this.handleRemoveAllItem}
                   />
                 )}
               />

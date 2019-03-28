@@ -76,7 +76,6 @@ class About extends Component {
             </div>
           </div>
         </div>
-        {/* Testing for alt info display */}
         <YelpReviewDisplay />
         <Title title="Directions" className="d-flex" />
         <div className="container d-flex justify-content-center">

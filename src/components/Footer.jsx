@@ -15,9 +15,11 @@ const Footer = () => {
       <Link className="btn btn-danger" to="/contact">
         Contact
       </Link>
-
+      <Link className="btn btn-danger" to="/credit">
+        Credit
+      </Link>
       <p className="text-center">
-        <i className="far fa-copyright p-2" />
+        <i className="far fa-copyright py-3 my-5" />
         {new Date().getFullYear()} Rolling Wok
       </p>
     </div>

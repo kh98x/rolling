@@ -1,6 +1,5 @@
 import React from "react";
 import Dropdown from "./dropDown";
-import GoogleOAuth from "./GoogleOAuth";
 import { Link } from "react-router-dom";
 
 const NavBar = ({ totalItems, yourOrder, onAdd, onSubtract }) => {
@@ -37,8 +36,6 @@ const NavBar = ({ totalItems, yourOrder, onAdd, onSubtract }) => {
           </li>
         </ul>
         <div>
-          {/* Where GoogleOAuth should go */}
-
           <Dropdown
             totalItems={totalItems}
             yourOrder={yourOrder}

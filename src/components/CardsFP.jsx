@@ -1,5 +1,6 @@
 import React from "react";
 import MenuCategories from "./MenuCategories";
+import { Link } from "react-router-dom";
 
 class CardsFP extends React.Component {
   render() {
@@ -15,12 +16,9 @@ class CardsFP extends React.Component {
           />
           <div className="card-img-overlay">
             <h2 className="card-title text-dark text-center">
-              Explore the menu
+              <Link to="/menu">Explore the menu</Link>
             </h2>
-            {/*
-                IMAGES OVERFLOWING CONTAINER: FIX LATER
-              */}
-            <div className="flex" style={{ height: "10vh" }}>
+            <div className="flex no-display" style={{ height: "10vh" }}>
               <div className="d-flex flex-sm-wrap overflow-hidden">
                 <MenuCategories />
               </div>
@@ -28,7 +26,7 @@ class CardsFP extends React.Component {
           </div>
         </div>
         {/* === DRINKS SECTION ===*/}
-        <div className="card bg-white text-white m-5">
+        <div className="card fp-bg-card bg-white text-white m-5">
           <img
             src="https://images.unsplash.com/photo-1541696490-8744a5dc0228?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
             className="card-img"
@@ -39,9 +37,9 @@ class CardsFP extends React.Component {
               Come try our drinks!
             </h2>{" "}
             <h4 className="card-text text-center text-dark">
-              Our customers love our boba milk tea and iced coffee
+              Our customers love our selections
             </h4>
-            <div className="displayCard">
+            <div className="displayCard no-display">
               <div className="row">
                 <div className="col-sm-6">
                   <div className="card">

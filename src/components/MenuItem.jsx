@@ -22,6 +22,9 @@ class MenuItem extends Component {
             <div className="button-section">
               <button
                 className="menu-button plus"
+                type="button"
+                data-toggle="modal"
+                data-target="#displayActionNotice"
                 onClick={() => onAdd(this.props)}
               >
                 <i className="fas fa-plus-circle" />
@@ -29,6 +32,9 @@ class MenuItem extends Component {
 
               <button
                 className="menu-button minus"
+                type="button"
+                data-toggle="modal"
+                data-target="#displayActionNotice"
                 onClick={() => onSubtract(this.props)}
               >
                 <i className="fas fa-minus-circle" />

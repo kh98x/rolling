@@ -1,7 +1,6 @@
 import React from "react";
 
 const renderStars = num => {
-  // refactor to string for img and logic for whole number vs half numbers
   return (
     <img
       src={require(`../yelp_stars/large_${

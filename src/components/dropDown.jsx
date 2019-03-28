@@ -48,7 +48,7 @@ class Dropdown extends Component {
     const { totalItems } = this.props;
 
     return (
-      <div className="dropleft">
+      <div className="btn-group">
         <div>
           <button
             className="btn btn-danger dropdown-toggle"
@@ -62,7 +62,7 @@ class Dropdown extends Component {
             <span className="badge badge-pill badge-danger">{totalItems}</span>
           </button>
           <div
-            className="dropdown-menu"
+            className="dropdown-menu dropdown-menu-xl-right"
             aria-labelledby="dropdownMenuButton"
             style={{ width: "300px" }}
           >

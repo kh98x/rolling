@@ -12,7 +12,6 @@ class YelpReviewDisplay extends Component {
 
   yelpOnLoad = async term => {
     const response = await yelp.get(`/${term}`);
-    console.log(response.data.reviews); // viewing purposes
 
     const allData = await yelp.get();
     this.setState({ reviewCount: allData.data.review_count });
