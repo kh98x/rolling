@@ -1,1 +1,1 @@
-Display page for Rolling Wok, online payments will be accepted soon!
+<strong>Display page for Rolling Wok</strong>, <em>online payments will be accepted soon!</em>
